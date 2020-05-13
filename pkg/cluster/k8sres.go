@@ -960,8 +960,9 @@ func (c *Cluster) generateStatefulSet(spec *acidv1.PostgresSpec) (*appsv1.Statef
 	}
 
 	// disables WAL archiving. An empty WALES3Bucket env var will disable WAL archiving in Spilo
-	if spec.DisableWALArchiving {
+	if spec.EnableWALArchiving != nil && !*spec.EnableWALArchiving {
 		c.OpConfig.WALES3Bucket = ""
+		c.logger.Info("Disabling WAL archiving")
 	}
 
 	if spec.StandbyCluster != nil && spec.StandbyCluster.S3WalPath == "" {
