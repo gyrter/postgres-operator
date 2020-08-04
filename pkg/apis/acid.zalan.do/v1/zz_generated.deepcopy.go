@@ -644,6 +644,11 @@ func (in *PostgresSpec) DeepCopyInto(out *PostgresSpec) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.EnableWALArchiving != nil {
+		in, out := &in.EnableWALArchiving, &out.EnableWALArchiving
+		*out = new(bool)
+		**out = **in
+	}
 	if in.InitContainersOld != nil {
 		in, out := &in.InitContainersOld, &out.InitContainersOld
 		*out = make([]corev1.Container, len(*in))
