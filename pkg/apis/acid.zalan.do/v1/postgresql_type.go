@@ -70,6 +70,7 @@ type PostgresSpec struct {
 	ServiceAnnotations    map[string]string           `json:"serviceAnnotations"`
 	TLS                   *TLSDescription             `json:"tls"`
 	AdditionalVolumes     []AdditionalVolume          `json:"additionalVolumes,omitempty"`
+	EnableWALArchiving    *bool                       `json:"enableWALArchiving,omitempty" defaults:"true"`
 
 	// deprecated json tags
 	InitContainersOld       []v1.Container `json:"init_containers,omitempty"`
